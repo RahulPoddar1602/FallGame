@@ -13,7 +13,7 @@ if(!localStorage.highestScore)
 {
     localStorage.highestScore=0;
 }
-// alert("Press Up and Down for Speed , right and left for going right,left. Now, Press Ok to Start")
+alert("Press Right and Left Arrow for movement. Press Ok to Start")
 function moveLeft(){
     var left = parseFloat(window.getComputedStyle(character).getPropertyValue("left"));
     if(left>0)
