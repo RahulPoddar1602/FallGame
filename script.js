@@ -7,7 +7,7 @@ var currentBlocks = [];
 var leftcounter = 1
 var runner =leftcounter;
 var speed =100;
-var topcounter = 0.8*Math.pow(1.01,counter)
+var topcounter = 0.9*Math.pow(1.01,counter)
 function moveLeft(){
     var left = parseFloat(window.getComputedStyle(character).getPropertyValue("left"));
     if(left>0)
@@ -36,9 +36,9 @@ function moveRight(){
 // })
 document.addEventListener("keydown", event => {
     if(event.key==="ArrowUp")
-    speed=speed+5;
+    speed=speed+3;
     if(event.key==="ArrowDown")
-    speed=speed-5;
+    speed=speed-3;
 })
 document.addEventListener("keydown", event => {
     if(both==0){
@@ -73,7 +73,7 @@ var blocks = setInterval(function(){
         var block = document.createElement("div");
         var hole = document.createElement("div");
         var speedometer = document.querySelector("#speedometer");
-        speedometer.textContent =`Speed : ${speed}mph`;
+        speedometer.textContent =`Speed : ${speed}mph || Score : ${(counter-9)<0?0:(counter-9)}`;
         
         block.setAttribute("class", "block");
         hole.setAttribute("class", "hole");
