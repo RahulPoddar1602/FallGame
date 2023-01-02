@@ -4,13 +4,14 @@ var interval;
 var both = 0;
 var counter = 0;
 var currentBlocks = [];
-var leftcounter = Math.pow(1.03,counter) 
+var leftcounter = 1
 var runner =leftcounter;
+var speed =100;
 var topcounter = 0.8*Math.pow(1.01,counter)
 function moveLeft(){
     var left = parseFloat(window.getComputedStyle(character).getPropertyValue("left"));
     if(left>0)
-    character.style.left = left - 1.5*runner + "px";
+    character.style.left = left - (speed/100)*runner + "px";
 }
 // function moveFastLeft(){
 //     var left = parseFloat(window.getComputedStyle(character).getPropertyValue("left"));
@@ -20,7 +21,7 @@ function moveLeft(){
 function moveRight(){
     var left = parseFloat(window.getComputedStyle(character).getPropertyValue("left"));
     if(left<380)
-    character.style.left = left + 1.5*runner + "px";
+    character.style.left = left + (speed/100)*runner + "px";
 }
 // function moveFastRight(){
 //     var left = parseFloat(window.getComputedStyle(character).getPropertyValue("left"));
@@ -33,6 +34,12 @@ function moveRight(){
 //     else
 //     runner=leftcounter;
 // })
+document.addEventListener("keydown", event => {
+    if(event.key==="ArrowUp")
+    speed=speed+5;
+    if(event.key==="ArrowDown")
+    speed=speed-5;
+})
 document.addEventListener("keydown", event => {
     if(both==0){
         both++;
@@ -65,6 +72,9 @@ var blocks = setInterval(function(){
     if(blockLastTop<400||counter==0){
         var block = document.createElement("div");
         var hole = document.createElement("div");
+        var speedometer = document.querySelector("#speedometer");
+        speedometer.textContent =`Speed : ${speed}mph`;
+        
         block.setAttribute("class", "block");
         hole.setAttribute("class", "hole");
         block.setAttribute("id", "block"+counter);
@@ -82,7 +92,7 @@ var blocks = setInterval(function(){
     var characterLeft = parseInt(window.getComputedStyle(character).getPropertyValue("left"));
     var drop = 0;
     if(characterTop <= 0 ){
-        alert("Game over. Score: "+(counter-9));
+        alert("Game over. Score: "+((counter-9)<0?0:(counter-9)));
         clearInterval(blocks);
         location.reload();
     }
