@@ -13,6 +13,10 @@ if(!localStorage.highestScore)
 {
     localStorage.highestScore=0;
 }
+if(!sessionStorage.highestScore)
+{
+    sessionStorage.highestScore=0;
+}
 alert("Press Right and Left Arrow for movement. Press Ok to Start")
 function moveLeft(){
     var left = parseFloat(window.getComputedStyle(character).getPropertyValue("left"));
@@ -63,8 +67,8 @@ document.addEventListener("keyup", event => {
 });
             
 var blocks = setInterval(function(){
-                speed+=0.02;
-                topcounter+=0.00005;
+                speed+=0.015;
+                topcounter+=0.000035;
                 var blockLast = document.getElementById("block"+(counter-1));
                 var holeLast = document.getElementById("hole"+(counter-1));
                 if(counter>0){
@@ -75,7 +79,7 @@ var blocks = setInterval(function(){
                     var block = document.createElement("div");
                     var hole = document.createElement("div");
                     var speedometer = document.querySelector("#speedometer");
-                    speedometer.textContent =`Speed : ${Math.floor(speed)}mph || Score : ${(counter-9)<0?0:(counter-9)} || Highest Score : ${localStorage.highestScore}`;
+                    speedometer.textContent =`Speed : ${Math.floor(speed)}mph || Score : ${(counter-9)<0?0:(counter-9)} || Current Highest Score : ${sessionStorage.highestScore} || All Time Highest Score : ${localStorage.highestScore}`;
                     
                     block.setAttribute("class", "block");
                     hole.setAttribute("class", "hole");
@@ -117,6 +121,10 @@ var blocks = setInterval(function(){
         if(counter-9>localStorage.highestScore)
         {
             localStorage.highestScore=counter-9;
+        }
+        if(counter-9>sessionStorage.highestScore)
+        {
+            sessionStorage.highestScore=counter-9;
         }
         iblock.style.top = iblockTop - topcounter + "px";
         ihole.style.top = iblockTop - topcounter  + "px";
