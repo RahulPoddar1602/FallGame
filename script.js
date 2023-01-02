@@ -79,7 +79,7 @@ var blocks = setInterval(function(){
                     var block = document.createElement("div");
                     var hole = document.createElement("div");
                     var speedometer = document.querySelector("#speedometer");
-                    speedometer.textContent =`Speed : ${100-Math.floor(speed)}mph || Score : ${(counter-9)<0?0:(counter-9)} || Current Highest Score : ${sessionStorage.highestScore} || All Time Highest Score : ${localStorage.highestScore}`;
+                    speedometer.textContent =`Speed : ${Math.floor(speed)-100}mph || Score : ${(counter-9)<0?0:(counter-9)} || Current Highest Score : ${sessionStorage.highestScore} || All Time Highest Score : ${localStorage.highestScore}`;
                     
                     block.setAttribute("class", "block");
                     hole.setAttribute("class", "hole");
