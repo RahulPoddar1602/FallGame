@@ -8,6 +8,7 @@ var leftcounter = 1
 var runner =leftcounter;
 var speed =100;
 var topcounter = 0.9*Math.pow(1.01,counter)
+alert("Press Up and Down for Speed , right and left for going right,left. Now, Press Ok to Start")
 function moveLeft(){
     var left = parseFloat(window.getComputedStyle(character).getPropertyValue("left"));
     if(left>0)
